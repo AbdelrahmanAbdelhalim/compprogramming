@@ -36,5 +36,5 @@ These characteristics are only guidelines.
     * A recurrent relation to transition between states (Sort of like proof by induction)
     * Base cases.
 
-Example: [a link](https://github.com/AbdelrahmanAbdelhalim/compprogramming/blob/master/dynamic_programming/climbing_stairs.py)
+Example: [climbing_stairs.py](https://github.com/AbdelrahmanAbdelhalim/compprogramming/blob/master/dynamic_programming/climbing_stairs.py)
 
