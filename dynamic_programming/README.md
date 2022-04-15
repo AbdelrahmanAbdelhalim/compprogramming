@@ -37,4 +37,60 @@ These characteristics are only guidelines.
     * Base cases.
 
 Example: [climbing_stairs.py](https://github.com/AbdelrahmanAbdelhalim/compprogramming/blob/master/dynamic_programming/climbing_stairs.py)
+---
+# Fifth Card (Multidimensional DP):
+
+The dimension so f a DP alogirthm refer to the number of state variables used to define each state. Typically the more dimensions a DP has the more difficult it is to solve.
+
+## Typical things to look for in DP problems that require a state variable:
+* An index along some input. Which was the sole state variable we considered up to this point. And it has always represented the soltuion about to that index in the input array. So say input: nums = [1,2,3,4] then dp(2) is the solution for the problem up
+* A second index along some input. Sometimes you need to index state variables. In some cases the variables represent the answer to the original problem if you considered the input starting at index i and ending at index j. Using the same example above dp(1,3) would represent the answer for [1,2,3]
+* Numerical constraints given such as, you are only allowed to rob 3 houses
+* Variables that describe statuses in a given state such as: true if holding a key and false if not
+* tuple or bitmask to indicate things visited and used. Mutable data structures can not be used since they are not hashable and therefore ints and strings are to be used
+---
+# Sixth Card (Top down to Bottom up)
+
+## Steps to converting from top down to bottom up:
+* Start with a complete top down solution
+* Initialize an array dp that is sized according to your state variables. For example: if the input to the problem was an array nums and an integer k that represents the maximum number ofa ctions allowed. The array would be a 2D with one dimension with length nums and the other with length k. The values should be initialized as some efault value opposite of what the problem is asking for. If the problem is asking for a maximum of something, set the values to negative infinity. If it is asking for the minimum of something, set the values to infinity.
+* Set the base cases just as you have set them up for the Top down solution
+* Write for-loops to ieterate over your state variables. If you have multiple state variables you will need nested for loops. They should start iterating from the base cases
+* Each iteration of the inner most loop represents a given state and is equivalent to a function call to the same state in top-down. Copy the logic from the function into the for loop basically
+* And that is about it!
+---
+# Seventh card (Example problem)
+In this article we discuss maximum score from performing multiplication operations.
+
+Problem Statemtent:
+
+You are given two integer arrays nums and multipliers of size n and m respectively, where n >= m. The arrays are 1-indexed.
+
+You begin with a score of 0. You want to perform exactly m operations. On the ith operation (1-indexed), you will:
+
+    Choose one integer x from either the start or the end of the array nums.
+    Add multipliers[i] * x to your score.
+    Remove x from the array nums.
+
+Return the maximum score after performing m operations.
+
+We need to know 3 things for each operation:
+* How many operations we have performed so far ?
+* Index of the rightmost element left in nums
+* Index of the leftmost element left in nums
+Even though it might feel like we need those 3 variables but we can deduce one from the other two. If we know how many elements we picked from the left and we know how many operations we have performed then we can find right where right = n - 1 - (i - left). So we can keep track of i and left and calculate right on the fly
+
+Now we have the state variables, what should the function return ? The problem is asking for the max score for some number of operations. So let us have dp(i,left) be the maximum possible score if we have done i total operations and used left numbers from the left side
+
+Recurrent Relation:
+dp(i,left) = max(mult[i]xnums[left] + dp(i+1,left+1), mult[i]xnums[right] + dp(i+1,left))
+
+Base cases:
+We are only allowed to perform m operations. That means when i equals m that we have no operations left and therefore should return 0
+
+Practical implementation:
+Note: @lru_cache can be useful to memoize the function. (Depending on interviewer obvs)
+
+Bottom up solution:
+The extra difficulty of bottom up can be seen in this problem. We use a lot of the same logic from the top down solution. We caclulate right the same way, we use the same recurrence relation etc.. But we need to iterate backwards starting from m (because the base case happens when i equals to m). We also need to initialize dp with one extra row so that we don't go out of bounds for the first iteration of the outer loop
 
