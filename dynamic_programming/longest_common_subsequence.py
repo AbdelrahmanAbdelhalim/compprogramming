@@ -4,7 +4,7 @@ class Solution:
         n = len(text2)
         if len(text1) <=0 or len(text2) <=0:
             return 0
-        dp = [[0] * (n+1)] * (m+1)
+        dp = [[0 for i in range(n)] for j in range(n)]
         for i in range(1,m+1):
             for j in range(1,n+1):
                 for block in dp:
