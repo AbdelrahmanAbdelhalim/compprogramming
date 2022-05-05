@@ -93,4 +93,38 @@ Note: @lru_cache can be useful to memoize the function. (Depending on interviewe
 
 Bottom up solution:
 The extra difficulty of bottom up can be seen in this problem. We use a lot of the same logic from the top down solution. We caclulate right the same way, we use the same recurrence relation etc.. But we need to iterate backwards starting from m (because the base case happens when i equals to m). We also need to initialize dp with one extra row so that we don't go out of bounds for the first iteration of the outer loop
+---
+# Eigth Card (Iteration in the recurrence relation)
+For all the problems so far the recurrence relation is a static equation. For exampke in the min cost climbing stairs problem we could only take 1 or 2 steps at a time. But what if we could take up to k steps at a time? The recurrence relation then becomes dynamic - it would be: dp(i) = min(dp(j) + cost[j]) for all (i-k) <= j < i
+We would need iteration in our recurrence relation.
+---
+# Card 9 (Example: Minimum difficulty of a job schedule)
+Probelm statement:
 
+    You want to schedule a list of jobs in d days. Jobs are dependent (i.e To work on the ith job, you have to finish all the jobs j where 0 <= j < i).
+
+    You have to finish at least one task every day. The difficulty of a job schedule is the sum of difficulties of each day of the d days. The difficulty of a day is the maximum difficulty of a job done on that day.
+
+    You are given an integer array jobDifficulty and an integer d. The difficulty of the ith job is jobDifficulty[i].
+
+Return the minimum difficulty of a job schedule. If you cannot find a schedule for the jobs return -1.
+
+## State variables
+* i where i is the index of the first job that will be done on the current day
+* day where day indicates the day we are currently at
+Let's have a function dp(i,day) that returns the minimum difficulty of a mob schedule which starts on i^th job and day. To solve the original problem, we will just return dp(0,1).
+
+## Recurrence relation
+    At weach state, we are on day 'day' and we need to do jjob i. The problem states that we have to do at least 1 job per day, that means we must leave at least d - day jobs (where d is the number of days from the problem statement and days is the current day) so that all future days have at least 1 job to do on that day. If n is the total number of jobs, that means that for any given state (i, day), we are allowed to do the jobs from index i up to but not including index n - (d - day)
+
+    We should try all options for a given day - try doing only one job, then two jobs, etc. Until we can't do any more jobs. The best opeiton is the one that results in the easiest job schedule.
+
+    The difficulty of a given day is the most difficult job that we did on that day. Since the jobs have to be done in order, if we are trying all the jobs we are allowed to do on that day (iterating through them), then we can use a variable hardest to keep track of the difficulty of the hardest job done today. I we choose to do jobs up to the jth job (inclusive) where i <= j < n - (d-day), then on the next day, we start with the (j+1)th job. Therefore our total difficulty is hardest + dp(j+1, day+1).
+
+    Finally giving us the scary recurrence relation: dp(i,day) = min(hardest + dp(j+1,day+1)) for all i <= j < n - (d-day) where hardest = max(jobDifficulty[k]) for all i <=k <= j
+
+## Base Cases
+    We need to finish all jobs in d days. Therefore if it is the last day (day == d), we need to finish up all the remaining jobs on this day, and the total difficulty will just be the largest number in jobDifficulty on or after index i.
+    if day == d then return the maximum job difficulty between job i and the end of the array (inclusivei)
+    Additionaly we can also pre-compute an array hardesJobRemaining[i] representing the difficulty of the hardest job on or after day i, so that the base cases are handled in constant time.
+    Another base case is if there are more days than jobs in which case we can't possibly schedule the jobs. Therefore returning -1
