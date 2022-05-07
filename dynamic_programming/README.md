@@ -128,3 +128,4 @@ Let's have a function dp(i,day) that returns the minimum difficulty of a mob sch
     if day == d then return the maximum job difficulty between job i and the end of the array (inclusivei)
     Additionaly we can also pre-compute an array hardesJobRemaining[i] representing the difficulty of the hardest job on or after day i, so that the base cases are handled in constant time.
     Another base case is if there are more days than jobs in which case we can't possibly schedule the jobs. Therefore returning -1
+
