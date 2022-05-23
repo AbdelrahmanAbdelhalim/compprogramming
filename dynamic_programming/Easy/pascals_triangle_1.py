@@ -2,12 +2,13 @@
     Given an integer numRows, return the first numRows of Pascal's triangle.
     In Pascal's triangle, each number is the sum of the two numbers directly above it
 '''
+
 class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
     '''Solution result from leetcode:
     Runtime: 37 ms, faster than 68.28% of Python3 online submissions for Pascal's Triangle.
     Memory Usage: 13.8 MB, less than 97.71% of Python3 online submissions for Pascal's Triangle.
     '''
-    def generate(self, numRows: int) -> List[List[int]]:
         if numRows == 0:
             return []
         elif numRows == 1:
