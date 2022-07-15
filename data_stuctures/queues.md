@@ -16,5 +16,5 @@ An improvement can be done is to make the array loop. When a pointer tries to mo
 Most modern programming languages have build in deque data structures. Often using a dynamic array as the underlying data structure (Although they can use a double linked list like python's dequeue class)
 
 To use a dequeue in python we use:
-    from collections import deque
-    queue = deque()
+        from collections import deque
+        queue = deque()
