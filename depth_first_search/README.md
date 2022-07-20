@@ -1,39 +1,32 @@
-# Introduction to Tree data structure
+# Depth First Search
+Searching a tree as deep as possible. When a target is not found, we re-trace our steps back and go deep again.
+pre-order traversal is depth first search
 
-Trees are composed of nodes connected by edges.
+IMPORTANT NOTE: Being able to visualize recursion and call stack of a DFS cunrtion is extremely important.
 
-Each node:
-    - Can have zero or more child nodes
-    - Must be connected to exactly one parent node except for the root node.
-Each tree has only one root node. These constraints mean that there are no cycles or loops
+Backtracking and divide and conquer can be seen from how depth first search functions. The action of retracing steps is called backtracking. Backtracking and DGS are similar concepts and essentialy the same thing. To make the distinction it could be said that backtracking is the concept of retracing and DFS is the algorithm that performs it.
+Backtracking is usually placed under combinatorial problems in many computer science textbook and that is the
+approach that will be taken with this study.
 
-## Terminologies related to trees:
-    - Internal node: everyn ode in a tree which is not a root node
-    - Leaf node: every node that has no children
-    - Ancestor: All the nodes that are between the path from the root to the current node
-    - Descendent: All the nodes that are reachable from the current node when moving down the tree.
-    - Level: Level of a node is the number of ancestors between the node and the root of the tree
-    - Depth: Depth of a node is the number of edges on the path from the root to that node
-    - Height: Height of a node is the number of edges on the longest path from that node to a leaf.
+In dfs we have two recursive call for each branch of the tree and return based on the result from the recursive
+call. So this is also a divide and conquer algorithm.
 
-## Types of a tree
+## When to use DFS
 
-### Binary Tree
-An n-ary tree is a tree where each node has no more than n children. A binary tree is a type of n-nary tree where n = 2. Every node in a binary tree has 0 to 2 children.
+DFS is a pre-order traversal:
+    - Traverse and find/create/modify/delete node
+    - Traverse with return value
 
-### Binary search tree
-A binary search tree is a tree where:
-    - All left descendents of the node are smaller than the node
-    - All right descendents of the node are bigger than the node
+Combinatorial problems:
+DFS/backtracking and combinatorial problems are a 'match made in heaven'. Combinatorial problems boil down
+to searching in trees
+    - How many ways there are to arrange something
+    - Find all possible combinations of
+    - Find all solutions to a puzzle
 
-## Balanced binary tree
-- Every node in a balanced binary tree follows the condition: The height difference of the left and right subtree of the node is no more than 1.
-- Searching, insertion, deletion in a balanced binary tree takes O(log n) instead of O(n) in an unbalanced binary tree.
-- Common types of balanced binary trees are red-black trees and AVL trees.
-
-## Tree Traversal
-- In-order traversal: left, node, right
-- Pre-order traversal: node, left, right
-- Post-order traversal: left, right, node
-
+Graph:
+Trees are special graphs that have no cycles. We can still use DFS with graphs with cycles, we will need however to record the nodes that we have visited and avoid re-visiting them again.
+    - Find path from point A to point B
+    - Find connected components
+    - Detect Cycles
 
