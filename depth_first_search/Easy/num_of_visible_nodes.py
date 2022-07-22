@@ -26,10 +26,9 @@ def visible_tree_node(root: Node) -> int:
         if not root:
             return 0
         biggest_check = 0
-        if root.val >= biggest_so_far:
+        if root.val > biggest_so_far:
             biggest_so_far = root.val
-            biggest_check = 1
-        return biggest_check + sum(count_visible_nodes(i,biggest_so_far) for i in [root.left, root.right])
+        return int(biggest_so_far <= root.val) + sum(count_visible_nodes(i,biggest_so_far) for i in [root.left, root.right])
     ans = count_visible_nodes(root, -math.inf)
     return ans
 
