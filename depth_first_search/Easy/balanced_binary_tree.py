@@ -15,12 +15,17 @@ class Node:
 
 def is_balanced(tree: Node) -> bool:
     return abs(max_depth(tree.left, 0) - max_depth(tree.right, 0)) <= 1
-
+'''Using -1 to utilise as a boolean value is a nice trick
+'''
 def max_depth(node, current_depth):
     if not node:
         return 0
     depth_left = max_depth(node.left, current_depth)
     depth_right = max_depth(node.right, current_depth)
+    if depth_left is -1 or depth_right is -1:
+        return -1
+    if abs(depth_left - depth_right) > 1:
+        return -1
     return max(depth_left, depth_right) + 1
 
 # this function build a tree from input
