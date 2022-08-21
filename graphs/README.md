@@ -29,6 +29,7 @@ to graphs as well. The only caveat is for cycles, in which case we keep the visi
 with low retrieval complexity such as a hash set.
 
 BFS Template:
+
     from collections import deque
     def bfs(root):
         stack = deque([root])
