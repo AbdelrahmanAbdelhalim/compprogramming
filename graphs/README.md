@@ -22,3 +22,43 @@ neighbours
     3:[1,2],
     4:[2]
 }
+
+## BFS on graphs
+Most interview problems focus on connected undirected graphs. The algorithms covered in bfs and dfs apply
+to graphs as well. The only caveat is for cycles, in which case we keep the visited nodes in a data struc
+with low retrieval complexity such as a hash set.
+
+BFS Template:
+    from collections import deque
+    def bfs(root):
+        stack = deque([root])
+        visited = set([root])
+        while len(stack > 0):
+            node = stack.popleft()
+            for neighbor in get_neighbors(node):  #get_neighbors fetches the neighboring nodes of the vertex
+                if neighbor in visited:
+                    continue
+                stack.append(neighbor)
+                visited.add(neighbor)
+
+If we want to keep track of the level, we follow the same for tree traversal.
+We can get the number of nodes in a level by looking at the length of the queue
+from collections import deque
+
+
+    def bfs(root):
+        queue = deque([root])
+        visited = set([root])
+        level = 0
+        while len(queue) > 0:
+            n = len(queue) # get # of nodes in the current level
+            for _ in range(n):
+                node = queue.popleft()
+                for neighbor in get_neighbors(node):
+                    if neighbor in visited:
+                        continue
+                    queue.append(neighbor)
+                    visited.add(neighbor)
+            # increment level after we have processed all nodes of the level
+
+            level += 1
