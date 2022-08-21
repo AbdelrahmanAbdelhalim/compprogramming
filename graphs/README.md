@@ -63,3 +63,28 @@ from collections import deque
             # increment level after we have processed all nodes of the level
 
             level += 1
+
+## Depth First Search on Graphs
+Similar to DFS, we just have to add visited to keep track of the visited nodes and use get_neighbors to 
+get the next nodes to visit
+
+DFS Template:
+
+    def dfs(root,visited):
+        for neighbor in get_neighbors(root):
+            if neighbor in visited:
+                continue
+            visited.add(neighbor)
+            dfs(neighbor, visited)
+
+## BFS or DFS
+
+If you have to just visited each node once without memory constraints then it doesn't matter
+
+BFS is better at:
+- Finding the shortest distance between two vertices
+- Graph of unknown size
+
+DFS is better at:
+- Using less memory, BFS has to keep all the nodes in the queue and for wide graphs, this can get very large
+- Finding nodes far away from the root
