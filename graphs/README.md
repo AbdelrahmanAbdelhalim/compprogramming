@@ -88,3 +88,29 @@ BFS is better at:
 DFS is better at:
 - Using less memory, BFS has to keep all the nodes in the queue and for wide graphs, this can get very large
 - Finding nodes far away from the root
+
+## Matrix as a graph
+
+Very often graph problems are repsresented as matrices.
+A matrix translates to a graph adjacency list
+When we code the problem, we build the graph as we go
+
+Nodes/vertices are represented as coordinatesof matrix entries
+
+## Getting neighboring nodes
+The shift here happens in the get_neighbors() function where we return
+up to 8 neighboring nodes (if we allow diagonal searchnig) The common way of doing that is to store the offsets in the x and y as a permuation tablea nd to add them to the node's cooridnates to get the neighbors
+
+    num_rows, num_cols = len(grid), len(grid - 1)
+    def get_neighbors(coords) -> set:
+        row, col = coords
+        delta_row = [-1, 0, 1, 0]
+        delta_col = [0, 1, 0, -1]
+        res = []
+        for i in range(len(delta_row)):
+            neighbor_row = row + delta_row[i]
+            neighbor_col = col + delta_col[i]
+            if 0 <= neighbor_row < num_rows and 0 <= neighbor_col < num_cols:
+            res.append((neihbor_row, neighbor_col))
+        return res
+
