@@ -114,3 +114,50 @@ up to 8 neighboring nodes (if we allow diagonal searchnig) The common way of doi
             res.append((neihbor_row, neighbor_col))
         return res
 
+
+## Topological sort
+Topological sort is the ordering of a directed graph where every node appears in the ordering before all the nodes it points to
+
+Graphs with cycles do not have a topological sort
+
+### Kahn's Algorithm
+Very similar to breadth first search
+The idea is -> given a directed graph: is there a way of removing a node such that each time we remove a node we guarantee that no other nodes point to that particular node ?
+Systematically remove one node at a time , each time removing a node that noother node points to.
+
+- Initialize a hashmap of node to parent count
+- Go through the nodes, count how many parents each node has
+- Push the node with 0 parents into the queue
+- Pop each node from the queue, subtract 1 from the parent count of each node it points to
+- If a node's parent count drops to 0 then push it into the queue
+- Repeate until the queue is empty. If the queue is not empty, there is maybe a cycle (or you are an idiot)
+
+Topological sort algorithm is very similar to BFS. The main difference is that we only push nodes with 0 parents into the queue in toplogical sort whereas in BFS we push all neighboring nodes in the queue.
+
+Similar to BFS we keep things short and clear. Two functions `count_parents()` and `topo_sort()`
+
+    from collections import deque
+    def count_parents(graph):
+        counts = {node: 0 for node in graph}
+        for parent in graph:
+            for node in graph[parent]:
+                counts[node] += 1
+        return counts
+
+    def topo_sort(graph):
+        res = []
+        q = deque()
+        counts = count_parents(graph)
+        for node in counts:
+        if counts[node] == 0:
+            q.append(node)
+        while len(q) >0:
+            node = q.popleft()
+            res.append(node)
+            for child in graph[node]:
+                counts[child] -= 1
+                if counts[child] == 0:
+                    q.append(child)
+        return res if len(graph) == len(res) else None
+        
+
