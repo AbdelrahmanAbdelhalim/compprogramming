@@ -1,4 +1,4 @@
-# Graphs
+#Graphs
 
 ## Tree with 0+ cycles
 
@@ -160,4 +160,5 @@ Similar to BFS we keep things short and clear. Two functions `count_parents()` a
                     q.append(child)
         return res if len(graph) == len(res) else None
         
-
+The algorithm is very similar to BFS. Except we initialize the queue with
+nodes that have 0 parents
