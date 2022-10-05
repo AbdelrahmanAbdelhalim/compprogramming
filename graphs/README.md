@@ -162,3 +162,9 @@ Similar to BFS we keep things short and clear. Two functions `count_parents()` a
         
 The algorithm is very similar to BFS. Except we initialize the queue with
 nodes that have 0 parents
+
+## Dijkstra's Algorithm
+Working with weighted graphs where the edges carry values.
+
+### Shortest-Path Faster Algorithm (SPFA)
+Can be thought of as a BFS variant. Instead of checking wehter or not the neighbor node has been visited we instead see if we can improve our distance by checking the neighbor nodes.
