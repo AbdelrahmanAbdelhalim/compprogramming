@@ -33,4 +33,15 @@ def knapsack_weight_only(weights: List[int]) -> List[int]:
             dp[i + 1].add(ssf)
     return list(dp[-1])
 
+#Memory optimization to use only a single set (we only need to keep track of the previous state)
+def knapsack_weight_only(weights: List[int]) -> List[int]:
+    dp = set()
+    dp.add(0)
+    for i in range(len(weights)):
+        new_set = set()
+        for ssf in dp:
+            new_set.add(ssf + weights[i])
+            new_set.add(ssf)
+        dp = new_set
+    return list(dp)
 
