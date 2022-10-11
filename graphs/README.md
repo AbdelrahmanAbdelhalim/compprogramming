@@ -168,3 +168,12 @@ Working with weighted graphs where the edges carry values.
 
 ### Shortest-Path Faster Algorithm (SPFA)
 Can be thought of as a BFS variant. Instead of checking wehter or not the neighbor node has been visited we instead see if we can improve our distance by checking the neighbor nodes.
+
+## Dijkstra's Algorithm
+Uses a priority queue. To store nodes by the distance from the root node. That way every time we pop a node, we konw that the distance is the shortest distance from our source node to the node. And we update the distances of the neighbors of the node by decrease_priority to make sure the distances of other nodes in the priority queue is the shortedst from the source node. (Needs another look, forgot how it works)
+
+## Uniform Cost Search
+In Dijkstra's algorithm, we add all vertices to the priority queue at the beginning. This can be difficult if the graph is very large. Uniform cost search algorithm is a variant of Dijkstra's. We start with the priority queue containing only the root node and add new vertices as we check the neighbors
+
+## Minimum Spanning Tree
+Minimum spanning tree is a tree for a given graph with overall minimum weight generated from a graph.
