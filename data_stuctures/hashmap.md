@@ -1,5 +1,5 @@
 # Hashmaps
-
+ 
 ## What is a hash function?
 A hash function is a function that convert data from an arbitrary size to a fixed size (usually 32-bit integer)
 Arbitrary Value -> hash_function() -> 32-bit integer (hash value)

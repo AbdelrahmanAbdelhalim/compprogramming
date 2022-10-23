@@ -10,13 +10,23 @@ The elements are the particular nodes of the tree that belong to that set and we
 If two nodes share the same parent then they belong to the same set. If they don't share the same parent then they belong to different sets.
 
 To accomplish this:
-- A single hashset {node_is_parent: node}
+- A single hashset {node : node's_parent}
 - Initially we set every node's parent to itself as every node is in the set by itself
 - We can merge two sets by setting one node's parent to the other node's parent
 - We can find what the set id node is by recursively moving up the chain of parents to find the parent which points back to itself
-- That accomplished aunion operation in O(1) and a find operation that has best case O(1), average case O(log(n)) and a worst case O(n) for a maximum depth tree.
+- That accomplished a union operation in O(1) and a find operation that has best case O(1), average case O(log(n)) and a worst case O(n) for a maximum depth tree.
 
+    class UnionFind:
+        def __init__(self):
+            self.id = {}  # Hashset to track the parents of nodes
+        def find(self, x):
+            y = self.id.get(x, x) # if the parent of x doesn't exist, return the node itself
+            if y != x:
+                y = self.find(y) # Recursively find the parent
+            return y
 
+        def union(self, x, y):
+            self.id[self.find(x)] = self.find(y) # set the value to set id node of node y
 ## Trie
 Problem: Given a set of strings, how many strings have a given prefix ?
 More complexity: What if we wanted to support an indefinit amount of prefix queries and optential new string insertions into our set?
