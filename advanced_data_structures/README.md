@@ -35,6 +35,17 @@ To achieve this we use a Trie data structure. This data structure is constructed
 
 At this point we can modify the nodes to carry any information we deem necessary. In one case we can store a frequency variable at the node to count the number of strings with a certain prefix
 
+    class Node:
+        def __init__(self, value):
+            self.value = value
+            self.children = {}
+        
+        def insert(self, s, idx):
+            if idx != len(s):
+                self.children.setdefault(s[idx],node(s[idx]))
+                self.children.get(s[idx]).insert(s, idx + 1)
+
+setdefaults(arg1, arg2) function looks for the key in arg1 in  the dictionary, if it exists it returns the value, if it doesn't exist it inserts the key in the dictionary with the value in arg2
 ## Segment Tree
 Segment trees allow su to quickly perform range queries as well as range updates. Supopose we had an array and we wanted to know the sum of a particular range of numbersa s well as update the array when necessary. Normally, if we were to use just an array, updating would take O(1) time but a sum query could take up to O(n). Segment trees make both operations a O(log(n)) operation.
 
