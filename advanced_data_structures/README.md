@@ -16,6 +16,7 @@ To accomplish this:
 - We can find what the set id node is by recursively moving up the chain of parents to find the parent which points back to itself
 - That accomplished a union operation in O(1) and a find operation that has best case O(1), average case O(log(n)) and a worst case O(n) for a maximum depth tree.
 
+
     class UnionFind:
         def __init__(self):
             self.id = {}  # Hashset to track the parents of nodes
@@ -47,7 +48,7 @@ At this point we can modify the nodes to carry any information we deem necessary
 
 setdefaults(arg1, arg2) function looks for the key in arg1 in  the dictionary, if it exists it returns the value, if it doesn't exist it inserts the key in the dictionary with the value in arg2
 ## Segment Tree
-Segment trees allow su to quickly perform range queries as well as range updates. Supopose we had an array and we wanted to know the sum of a particular range of numbersa s well as update the array when necessary. Normally, if we were to use just an array, updating would take O(1) time but a sum query could take up to O(n). Segment trees make both operations a O(log(n)) operation.
+Segment trees allow us to quickly perform range queries as well as range updates. Suppose we had an array and we wanted to know the sum of a particular range of numbers as well as update the array when necessary. Normally, if we were to use just an array, updating would take O(1) time but a sum query could take up to O(n). Segment trees make both operations a O(log(n)) operation.
 
 ### Array to tree:
 Segment trees work by breaking down the array into a binary tree where each node represents a segment of the array. Each node in the binary tree is created by taking the existing segment, cutting it in half and distributing it to the children nodes.
