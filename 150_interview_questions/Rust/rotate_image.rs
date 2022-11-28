@@ -7,6 +7,7 @@ impl Solution {
     pub fn rotate(matrix: &mut Vec<Vec<i32>>) {
         let mut l = 0;
         let mut r = matrix[0].len() - 1;
+        // Reflect image on the vertical middle axis
         while r > l {
             for i in 0..matrix.len() {
                 let temp = matrix[i][l];
@@ -18,6 +19,7 @@ impl Solution {
         }
         let mut i = 0;
         let mut j = 0;
+        //reflect on x = y;
         while j < matrix.len() {
             if i + j == matrix.len() - 1{
                 i = 0;
